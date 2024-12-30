@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productivity Buddy</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="lib/xlsx.full.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="header-content">
+        <h1>Productivity Buddy 🚀</h1>
+        <button id="hamburgerBtn" class="hamburger-btn">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="tab-container">
+        <button class="tab-button active" data-tab="search">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          Search
+        </button>
+        <button class="tab-button" data-tab="todo">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 11l3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+          Todo
+        </button>
+        <button class="tab-button" data-tab="reminder">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+          </svg>
+          Reminders
+        </button>
+        <button class="tab-button" data-tab="save">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Add
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Search Tab -->
+      <div id="searchTab" class="tab-content active">
+        <div id="chatContainer">
+          <div id="chatResults"></div>
+        </div>
+        <div id="chatInputContainer">
+          <input id="searchInput" type="text" placeholder="Search or type 'all'..." />
+          <button id="searchBtn">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Todo Tab -->
+      <div id="todoTab" class="tab-content">
+        <div class="todo-container">
+          <div class="todo-input-container">
+            <input id="todoInput" type="text" placeholder="Add a new task..." />
+            <button id="addTodoBtn">Add</button>
+          </div>
+          <div class="todo-list" id="todoList"></div>
+        </div>
+      </div>
+
+      <!-- Reminder Tab -->
+      <div id="reminderTab" class="tab-content">
+        <div class="reminder-container">
+          <form id="reminderForm">
+            <div class="form-group">
+              <input id="reminderTitle" type="text" placeholder="Reminder title" required />
+            </div>
+            <div class="form-group">
+              <input id="reminderDateTime" type="datetime-local" required />
+            </div>
+            <button type="submit">Set Reminder</button>
+          </form>
+          <div class="reminders-list" id="remindersList"></div>
+        </div>
+      </div>
+      
+      <!-- Save Tab -->
+      <div id="saveTab" class="tab-content">
+        <form id="saveSiteForm">
+          <div class="form-group">
+            <input id="siteUrl" placeholder="Site URL" required />
+          </div>
+          <div class="form-group">
+            <input id="siteSettings" placeholder="Settings" required />
+          </div>
+          <div class="form-group">
+            <textarea id="siteNotes" placeholder="Notes" required></textarea>
+          </div>
+          <button type="submit">Save Site</button>
+        </form>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Hamburger Menu -->
+  <div id="hamburgerMenu" class="hamburger-menu">
+    <div class="hamburger-overlay"></div>
+    <div class="hamburger-content">
+      <button id="closeHamburgerBtn" class="close-btn">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <h2>Settings</h2>
+      <div class="menu-item">
+        <label for="themeSelect">Theme</label>
+        <select id="themeSelect" required>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="blue">Blue</option>
+        </select>
+      </div>
+      <button id="exportButton" class="menu-button">Export Settings</button>
+      <button id="importButton" class="menu-button">Import Settings</button>
+      <input type="file" id="importFile" accept=".xlsx" style="display: none;">
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
